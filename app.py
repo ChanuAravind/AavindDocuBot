@@ -106,17 +106,17 @@ def main():
     if option == "Upload PDF":
         uploaded_file = st.file_uploader("Upload a PDF file", type=["pdf"])
         if uploaded_file is not None:
-            with st.spinner("Loading documents..."):
-                docs = get_docs(uploaded_file)
-            st.session_state.docs = docs
+            if st.session_state.docs is None:
+                with st.spinner("Loading documents..."):
+                    docs = get_docs(uploaded_file)
+                st.session_state.docs = docs
 
     elif option == "Enter Web URL":
         url = st.text_input("Enter URL", key="url_input")
         if st.session_state.url_input != url:
             st.session_state.url_input = url
-            # Reset docs when URL changes
             st.session_state.docs = None
-        if url:
+        if url and st.session_state.docs is None:
             with st.spinner("Fetching and processing documents from URL..."):
                 docs = get_docs_from_url(url)
             st.session_state.docs = docs
