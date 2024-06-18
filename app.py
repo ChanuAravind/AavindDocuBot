@@ -44,8 +44,6 @@ def create_vector_store(docs):
 
 # Function to interact with Groq AI
 def chat_groq(messages):
-    load_dotenv()
-    client = Groq(api_key=os.environ.get('GROQ_API_KEY'))
     response_content = ''
     stream = client.chat.completions.create(
         model="llama3-70b-8192",
@@ -72,7 +70,8 @@ def summarize_chat_history(chat_history):
 
 # Main function to control the app
 def main():
-    
+    load_dotenv()
+    client = Groq(api_key=os.environ.get('GROQ_API_KEY'))
     st.set_page_config(page_title='AravindDocuQuery')
 
     st.title("ArvDocuQuery")
