@@ -103,7 +103,7 @@ def main():
     st.subheader("Choose document source:")
     option = st.radio("Select one:", ("Upload Text PDF", "Enter Web URL"))
 
-    if option == "Upload PDF":
+    if option == "Upload Text PDF":
         uploaded_file = st.file_uploader("Upload a Text PDF file", type=["pdf"])
         if uploaded_file is not None:
             if st.session_state.docs is None:
