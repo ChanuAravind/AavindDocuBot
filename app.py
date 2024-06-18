@@ -79,7 +79,7 @@ def main():
 
     with st.expander("Instructions"):
         st.write("1. Choose a document source using the radio button.")
-        st.write("2. If uploading a PDF, click 'Upload PDF', select your file, and wait for 'Documents Loaded' confirmation.")
+        st.write("2. If uploading a Text PDF, click 'Upload Text PDF', select your file, and wait for 'Documents Loaded' confirmation.")
         st.write("3. If entering a web URL, enter the URL, click 'Enter Web URL', and wait for 'Documents Loaded from URL' confirmation.")
         st.write("4. After loading documents, click 'Create Vector Store' to process.")
         st.write("5. Enter a question in the text area and submit to interact with the AI chatbot.")
@@ -101,10 +101,10 @@ def main():
         st.session_state.chat_summary = ""
 
     st.subheader("Choose document source:")
-    option = st.radio("Select one:", ("Upload PDF", "Enter Web URL"))
+    option = st.radio("Select one:", ("Upload Text PDF", "Enter Web URL"))
 
     if option == "Upload PDF":
-        uploaded_file = st.file_uploader("Upload a PDF file", type=["pdf"])
+        uploaded_file = st.file_uploader("Upload a Text PDF file", type=["pdf"])
         if uploaded_file is not None:
             if st.session_state.docs is None:
                 with st.spinner("Loading documents..."):
